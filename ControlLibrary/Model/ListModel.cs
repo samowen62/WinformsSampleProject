@@ -1,17 +1,15 @@
 ﻿using ControlLibrary.DAL;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControlLibrary.Model
 {
+    /// <summary>
+    /// Implemented as a singleton
+    /// </summary>
     public class ListModel : INotifyPropertyChanged
     {
-        public readonly DataAccess _dal = new DataAccess();
+        public readonly DataAccess _dal = DataAccess.Instance;
 
         public ObservableCollection<string> List { get; set; }
 
@@ -20,11 +18,9 @@ namespace ControlLibrary.Model
         public ListModel()
         {
             List = _dal.Select();
-
-            //_dal.DatabaseUpdated += UpdataFromDal;
-
-            //NOTE: when item is added removed etc. from list
             List.CollectionChanged += ListCollectionChanged;
+            //TODO:not sure if necessary
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("List"));
         }
 
         private void ListCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

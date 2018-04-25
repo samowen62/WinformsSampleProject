@@ -1,9 +1,5 @@
 ﻿using ControlLibrary.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ControlLibrary.View
 {
@@ -15,7 +11,6 @@ namespace ControlLibrary.View
         private void InitialControlHandlers()
         {
             _viewModel = new ListViewModel();
-
             //ENTER KEY!!!
             InputText.KeyPress += (sender, e) =>
             {
@@ -27,8 +22,11 @@ namespace ControlLibrary.View
             AddBtn.Tag = _viewModel.AddToListCommand;
 
             InputText.Tag = _viewModel.TextChangedCommand;
-            InputText.DataBindings.Add(new System.Windows.Forms.Binding("Text", _viewModel, "NewWordText", 
-                false, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));//this last part will keep it bound on enter press
+            InputText.DataBindings.Add(new Binding("Text", _viewModel, "NewWordText", 
+                false, DataSourceUpdateMode.OnPropertyChanged));//this last part will keep it bound on enter press
+
+            ListText.DataBindings.Add(new Binding("Text", _viewModel, "Display",
+                false, DataSourceUpdateMode.OnPropertyChanged));
         }
 
         private void AddToList()
@@ -37,7 +35,6 @@ namespace ControlLibrary.View
             _viewModel.Execute(AddBtn.Tag, null);
             InputText.Text = string.Empty;
             InputText.Focus();
-            ListText.Text = _viewModel.DisplayList();
         }
     }
 }

@@ -35,7 +35,7 @@
             // 
             // AddBtn
             // 
-            this.AddBtn.Location = new System.Drawing.Point(207, 326);
+            this.AddBtn.Location = new System.Drawing.Point(78, 198);
             this.AddBtn.Name = "AddBtn";
             this.AddBtn.Size = new System.Drawing.Size(114, 39);
             this.AddBtn.TabIndex = 0;
@@ -45,28 +45,28 @@
             // ListText
             // 
             this.ListText.AutoSize = true;
-            this.ListText.Location = new System.Drawing.Point(204, 160);
+            this.ListText.Location = new System.Drawing.Point(75, 18);
             this.ListText.Name = "ListText";
-            this.ListText.Size = new System.Drawing.Size(49, 17);
+            this.ListText.Size = new System.Drawing.Size(39, 17);
             this.ListText.TabIndex = 1;
-            this.ListText.Text = "";
+            this.ListText.Text = "fdsfd";
             // 
             // InputText
             // 
-            this.InputText.Location = new System.Drawing.Point(207, 264);
+            this.InputText.Location = new System.Drawing.Point(78, 135);
             this.InputText.Name = "InputText";
             this.InputText.Size = new System.Drawing.Size(114, 22);
             this.InputText.TabIndex = 2;
             // 
-            // UserControl1
+            // ListControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.InputText);
             this.Controls.Add(this.ListText);
             this.Controls.Add(this.AddBtn);
-            this.Name = "UserControl1";
-            this.Size = new System.Drawing.Size(528, 510);
+            this.Name = "ListControl";
+            this.Size = new System.Drawing.Size(256, 314);
             this.ResumeLayout(false);
             this.PerformLayout();
 

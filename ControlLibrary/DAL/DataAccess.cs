@@ -1,30 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
 namespace ControlLibrary.DAL
 {
     public class DataAccess
     {
-        public DataAccess()
+        private DataAccess()
         {
+
+        }
+
+        private static DataAccess _instance;
+        public static DataAccess Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new DataAccess();
+                }
+                return _instance;
+            }
         }
 
         public static ObservableCollection<string> Data = new ObservableCollection<string>();
 
         public ObservableCollection<string> Select()
         {
-            var temp = new ObservableCollection<string>();
-
-            foreach (var s in Data)
-            {
-                temp.Add(s);
-            }
-
-            return temp;
+            return Data;
         }
 
         public void Update(ObservableCollection<string> data)
@@ -36,12 +38,10 @@ namespace ControlLibrary.DAL
                 Data.Add(s);
             }
 
-            //if (DatabaseUpdated != null)
-            //    DatabaseUpdated(Data);
+            DatabaseUpdated?.Invoke(Data);
         }
 
-        //NOTE: These would be necessary if the data changed in the background
-        //public delegate void UpdateHandler(ObservableCollection<string> list);
-        //public UpdateHandler DatabaseUpdated;
+        public delegate void UpdateHandler(ObservableCollection<string> list);
+        public UpdateHandler DatabaseUpdated;
     }
 }

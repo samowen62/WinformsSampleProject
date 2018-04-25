@@ -7,13 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ControlLibrary.ViewModel;
 
 namespace ControlLibrary.View
 {
-    public partial class ListControl: UserControl
+    public partial class MainControl : UserControl
     {
-        public ListControl()
+        public MainControl()
         {
             InitializeComponent();
             InitialControlHandlers();

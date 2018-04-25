@@ -31,6 +31,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,6 +43,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\DataAccess.cs" />
+    <Compile Include="ViewModel\GraphViewModel.cs" />
+    <Compile Include="View\GraphControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\GraphControl.Designer.cs">
+      <DependentUpon>GraphControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ListControl.CodeBehind.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -55,13 +63,32 @@
     <Compile Include="ViewModel\ListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\ICommand.cs" />
+    <Compile Include="View\MainControl.CodeBehind.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\MainControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\MainControl.Designer.cs">
+      <DependentUpon>MainControl.cs</DependentUpon>
+    </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="View\GraphControl.resx">
+      <DependentUpon>GraphControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\ListControl.resx">
       <DependentUpon>ListControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\MainControl.resx">
+      <DependentUpon>MainControl.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="View\GraphControl.CodeBehind.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

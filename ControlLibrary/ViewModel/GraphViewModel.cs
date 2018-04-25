@@ -4,29 +4,11 @@ using System.ComponentModel;
 
 namespace ControlLibrary.ViewModel
 {
-    public class ListViewModel : INotifyPropertyChanged
+    /// <summary>
+    /// Mainly just listens to the model and updates on changes
+    /// </summary>
+    public class GraphViewModel : INotifyPropertyChanged
     {
-        //bound to view
-        public string NewWordText { get; set; }
-
-        private ICommand _addToListCommand;
-        public ICommand AddToListCommand
-        {
-            get
-            {
-                return _addToListCommand ?? (_addToListCommand = new AddToListCommand(this));
-            }
-        }
-
-        private ICommand _textChangedCommand;
-        public ICommand TextChangedCommand
-        {
-            get
-            {
-                return _textChangedCommand ?? (_textChangedCommand = new TextChangedCommand(this));
-            }
-        }
-
         private ObservableCollection<string> _wordList;
         public ObservableCollection<string> WordList
         {
@@ -41,16 +23,17 @@ namespace ControlLibrary.ViewModel
                 _wordList.CollectionChanged += MyPropertyCollectionChanged;
             }
         }
+        //TODO:delete
+        public string TestText { get; set; }
+        public string SomeText { get { return WordList.Count + "!"; } }
 
         // attach view model to model.
-        public ListViewModel()
+        public GraphViewModel()
         {
             var model = new ListModel();
             model.PropertyChanged += ModelPropertyChanged;
             WordList = model.List;
         }
-
-        public string Display { get { return string.Join("\n", _wordList); } }
 
         void ModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -77,37 +60,6 @@ namespace ControlLibrary.ViewModel
             ((ICommand)sender).Execute(parameter);
         }
 
-    }
-
-    //these ICommands will basically tell how to react to events
-    public class AddToListCommand : ICommand
-    {
-        public ListViewModel _viewModel { get; set; }
-
-        public AddToListCommand(ListViewModel viewModel)
-        {
-            _viewModel = viewModel;
-        }
-
-        public void Execute(object sender)
-        {
-            _viewModel.WordList.Add(_viewModel.NewWordText);
-        }
-    }
-
-    public class TextChangedCommand : ICommand
-    {
-        public TextChangedCommand(ListViewModel viewModel)
-        {
-            _viewModel = viewModel;
-        }
-
-        public ListViewModel _viewModel { get; set; }
-
-        public void Execute(object sender)
-        {
-            _viewModel.NewWordText = sender.ToString();
-        }
     }
 }
 
