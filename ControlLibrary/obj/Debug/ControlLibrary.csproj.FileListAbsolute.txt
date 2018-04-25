@@ -1,0 +1,8 @@
+C:\Projects\wforms\ControlLibrary\ControlLibrary\bin\Debug\ControlLibrary.dll
+C:\Projects\wforms\ControlLibrary\ControlLibrary\bin\Debug\ControlLibrary.pdb
+C:\Projects\wforms\ControlLibrary\ControlLibrary\obj\Debug\ControlLibrary.csprojResolveAssemblyReference.cache
+C:\Projects\wforms\ControlLibrary\ControlLibrary\obj\Debug\ControlLibrary.csproj.GenerateResource.Cache
+C:\Projects\wforms\ControlLibrary\ControlLibrary\obj\Debug\ControlLibrary.csproj.CoreCompileInputs.cache
+C:\Projects\wforms\ControlLibrary\ControlLibrary\obj\Debug\ControlLibrary.dll
+C:\Projects\wforms\ControlLibrary\ControlLibrary\obj\Debug\ControlLibrary.pdb
+C:\Projects\wforms\ControlLibrary\ControlLibrary\obj\Debug\ControlLibrary.ListControl.resources
