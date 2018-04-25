@@ -5,4 +5,4 @@ C:\Projects\wforms\ControlLibrary\ControlLibrary\obj\Debug\ControlLibrary.csproj
 C:\Projects\wforms\ControlLibrary\ControlLibrary\obj\Debug\ControlLibrary.csproj.CoreCompileInputs.cache
 C:\Projects\wforms\ControlLibrary\ControlLibrary\obj\Debug\ControlLibrary.dll
 C:\Projects\wforms\ControlLibrary\ControlLibrary\obj\Debug\ControlLibrary.pdb
-C:\Projects\wforms\ControlLibrary\ControlLibrary\obj\Debug\ControlLibrary.ListControl.resources
+C:\Projects\wforms\ControlLibrary\ControlLibrary\obj\Debug\ControlLibrary.View.ListControl.resources

@@ -42,13 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\DataAccess.cs" />
-    <Compile Include="ListControl.CodeBehind.cs">
+    <Compile Include="View\ListControl.CodeBehind.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ListControl.cs">
+    <Compile Include="View\ListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ListControl.Designer.cs">
+    <Compile Include="View\ListControl.Designer.cs">
       <DependentUpon>ListControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\ListModel.cs" />
@@ -58,7 +58,7 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ListControl.resx">
+    <EmbeddedResource Include="View\ListControl.resx">
       <DependentUpon>ListControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

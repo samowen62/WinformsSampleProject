@@ -1,4 +1,4 @@
-﻿namespace ControlLibrary
+﻿namespace ControlLibrary.View
 {
     partial class ListControl
     {
