@@ -19,8 +19,6 @@ namespace ControlLibrary.Model
         {
             List = _dal.Select();
             List.CollectionChanged += ListCollectionChanged;
-            //TODO:not sure if necessary
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("List"));
         }
 
         private void ListCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

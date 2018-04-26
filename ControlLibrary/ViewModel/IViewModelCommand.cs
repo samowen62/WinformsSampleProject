@@ -1,6 +1,6 @@
 ﻿namespace ControlLibrary.ViewModel
 {
-    public interface ICommand
+    public interface IViewModelCommand
     {
         void Execute(object sender);
     }

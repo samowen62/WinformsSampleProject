@@ -1,31 +1,36 @@
 ﻿using ControlLibrary.Model;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Linq;
 
 namespace ControlLibrary.ViewModel
 {
-    public class ListViewModel : INotifyPropertyChanged
+    public class ListViewModel : BaseViewModel
     {
         //bound to view
         public string NewWordText { get; set; }
 
-        private ICommand _addToListCommand;
-        public ICommand AddToListCommand
+        private IViewModelCommand _addToListCommand;
+        public IViewModelCommand AddToListCommand
         {
             get
             {
-                return _addToListCommand ?? (_addToListCommand = new AddToListCommand(this));
+                return _addToListCommand ?? (_addToListCommand = new AddToList(this));
             }
         }
 
-        private ICommand _textChangedCommand;
-        public ICommand TextChangedCommand
+        private IViewModelCommand _textChangedCommand;
+        public IViewModelCommand TextChangedCommand
         {
             get
             {
-                return _textChangedCommand ?? (_textChangedCommand = new TextChangedCommand(this));
+                return _textChangedCommand ?? (_textChangedCommand = new TextChanged(this));
             }
         }
+
+        #region view bindings
 
         private ObservableCollection<string> _wordList;
         public ObservableCollection<string> WordList
@@ -38,9 +43,36 @@ namespace ControlLibrary.ViewModel
             set
             {
                 _wordList = value;
-                _wordList.CollectionChanged += MyPropertyCollectionChanged;
+                _wordList.CollectionChanged += WordListChanged;
             }
         }
+
+        public List<NameDataPoint> BarGraphFeed {
+            get
+            {
+                return _wordList
+                    .GroupBy(e => e)
+                    .Select(e => new NameDataPoint { Freq = e.Count(), Word = e.Key })
+                    .OrderBy(e => e.Word)
+                    .ToList();
+            }
+        }
+
+        public string DisplayEntries {
+            get {
+                return string.Join("\n",_wordList);
+            }
+        }
+
+        public string DisplayEntryCount
+        {
+            get
+            {
+                return $"{_wordList.Count()} entries";
+            }
+        }
+
+        #endregion
 
         // attach view model to model.
         public ListViewModel()
@@ -50,63 +82,49 @@ namespace ControlLibrary.ViewModel
             WordList = model.List;
         }
 
-        public string Display { get { return string.Join("\n", _wordList); } }
-
         void ModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             WordList = (ObservableCollection<string>)sender; //For Get any new entity Changed 
         }
 
-        void MyPropertyCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        void WordListChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             {
                 NotifyPropertyChanged("WordList");
+                NotifyPropertyChanged("DisplayEntries");
+                NotifyPropertyChanged("BarGraphFeed");
             }
         }
 
-        public void NotifyPropertyChanged(string propertyName)
+        public class NameDataPoint
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            public string Word { get; set; }
+            public int Freq { get; set; }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        //TODO: good to abstract to view model parent
-        public void Execute(object sender, object parameter)
+        //these ICommands will basically tell how to react to events
+        public class AddToList : ViewModelCommand
         {
-            ((ICommand)sender).Execute(parameter);
+            public AddToList(BaseViewModel viewModel) : base(viewModel)
+            {
+            }
+
+            public override void Execute(object sender)
+            {
+                (_viewModel as ListViewModel).WordList.Add((_viewModel as ListViewModel).NewWordText);
+            }
         }
 
-    }
-
-    //these ICommands will basically tell how to react to events
-    public class AddToListCommand : ICommand
-    {
-        public ListViewModel _viewModel { get; set; }
-
-        public AddToListCommand(ListViewModel viewModel)
+        public class TextChanged : ViewModelCommand
         {
-            _viewModel = viewModel;
-        }
+            public TextChanged(BaseViewModel viewModel) : base(viewModel)
+            {
+            }
 
-        public void Execute(object sender)
-        {
-            _viewModel.WordList.Add(_viewModel.NewWordText);
-        }
-    }
-
-    public class TextChangedCommand : ICommand
-    {
-        public TextChangedCommand(ListViewModel viewModel)
-        {
-            _viewModel = viewModel;
-        }
-
-        public ListViewModel _viewModel { get; set; }
-
-        public void Execute(object sender)
-        {
-            _viewModel.NewWordText = sender.ToString();
+            public override void Execute(object sender)
+            {
+                (_viewModel as ListViewModel).NewWordText = sender.ToString();
+            }
         }
     }
 }

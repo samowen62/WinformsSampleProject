@@ -4,10 +4,7 @@ namespace ControlLibrary.DAL
 {
     public class DataAccess
     {
-        private DataAccess()
-        {
-
-        }
+        private DataAccess() { }
 
         private static DataAccess _instance;
         public static DataAccess Instance

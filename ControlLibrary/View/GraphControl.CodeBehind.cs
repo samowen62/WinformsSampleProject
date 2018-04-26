@@ -1,10 +1,6 @@
 ﻿using ControlLibrary.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ControlLibrary.View
 {
@@ -16,18 +12,17 @@ namespace ControlLibrary.View
         {
             _viewModel = new ListViewModel();
 
-            /*var list = _viewModel.WordList.ToDictionary(e => e, e => e.Count());
-			foreach(var item in list)
-            {
-                chart1.Series.Add(item.Key);
-                chart1.Series[item.Key].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
-                chart1.Series[item.Key].Points.AddY(item.Value);
-                chart1.Series[item.Key].ChartArea = item.Key;
-            }*/
+            label1.DataBindings.Add(new Binding("Text", _viewModel, "DisplayEntryCount", false, DataSourceUpdateMode.OnPropertyChanged));
 
-            //chart1.DataBindings
-			//label1.Tag 
-            label1.DataBindings.Add(new Binding("Text", _viewModel, "Display", false, DataSourceUpdateMode.OnPropertyChanged));//this last part will keep it bound on enter press
+            chart1.Series.Add("Series1");
+            chart1.Series["Series1"].ChartType = SeriesChartType.Column;
+            chart1.Series["Series1"].YValueMembers = "Freq";
+            chart1.Series["Series1"].XValueMember = "Word";
+            chart1.DataBindings.Add(new Binding("DataSource", _viewModel, "BarGraphFeed", false, DataSourceUpdateMode.OnPropertyChanged));
+
+            //This quick hack forces a repaint of the chart every time it is loaded.
+            //For some reason databinding doesn't repaint it like any sane person would expect
+            chart1.VisibleChanged += (sender, e) => chart1.Series["Series1"].ChartType = SeriesChartType.Column;
         }
     }
 }
