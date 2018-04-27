@@ -1,9 +1,7 @@
 ﻿using ControlLibrary.Model;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Linq;
 
 namespace ControlLibrary.ViewModel
 {
@@ -47,28 +45,9 @@ namespace ControlLibrary.ViewModel
             }
         }
 
-        public List<NameDataPoint> BarGraphFeed {
-            get
-            {
-                return _wordList
-                    .GroupBy(e => e)
-                    .Select(e => new NameDataPoint { Freq = e.Count(), Word = e.Key })
-                    .OrderBy(e => e.Word)
-                    .ToList();
-            }
-        }
-
         public string DisplayEntries {
             get {
                 return string.Join("\n",_wordList);
-            }
-        }
-
-        public string DisplayEntryCount
-        {
-            get
-            {
-                return $"{_wordList.Count()} entries";
             }
         }
 
@@ -84,22 +63,12 @@ namespace ControlLibrary.ViewModel
 
         void ModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            WordList = (ObservableCollection<string>)sender; //For Get any new entity Changed 
+            WordList = (ObservableCollection<string>)sender; //will trigger WordListChanged which triggers NotifyPropertyChanged
         }
 
         void WordListChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            {
-                NotifyPropertyChanged("WordList");
-                NotifyPropertyChanged("DisplayEntries");
-                NotifyPropertyChanged("BarGraphFeed");
-            }
-        }
-
-        public class NameDataPoint
-        {
-            public string Word { get; set; }
-            public int Freq { get; set; }
+            NotifyPropertyChanged("WordList");
         }
 
         //these ICommands will basically tell how to react to events

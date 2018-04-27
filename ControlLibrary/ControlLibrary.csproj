@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="DAL\DataAccess.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\GraphViewModel.cs" />
     <Compile Include="View\GraphControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

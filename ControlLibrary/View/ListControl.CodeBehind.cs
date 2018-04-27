@@ -11,7 +11,7 @@ namespace ControlLibrary.View
         private void InitialControlHandlers()
         {
             _viewModel = new ListViewModel();
-            //ENTER KEY!!!
+            //for the enter key
             InputText.KeyPress += (sender, e) =>
             {
                 if (e.KeyChar == (char)13)
