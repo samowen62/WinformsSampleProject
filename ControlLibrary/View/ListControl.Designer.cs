@@ -29,44 +29,45 @@
         private void InitializeComponent()
         {
             this.AddBtn = new System.Windows.Forms.Button();
-            this.ListText = new System.Windows.Forms.Label();
             this.InputText = new System.Windows.Forms.TextBox();
+            this.DisplayText = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // AddBtn
             // 
-            this.AddBtn.Location = new System.Drawing.Point(78, 198);
+            this.AddBtn.Location = new System.Drawing.Point(34, 68);
             this.AddBtn.Name = "AddBtn";
             this.AddBtn.Size = new System.Drawing.Size(114, 39);
             this.AddBtn.TabIndex = 0;
             this.AddBtn.Text = "Add";
             this.AddBtn.UseVisualStyleBackColor = true;
             // 
-            // ListText
-            // 
-            this.ListText.AutoSize = true;
-            this.ListText.Location = new System.Drawing.Point(75, 18);
-            this.ListText.Name = "ListText";
-            this.ListText.Size = new System.Drawing.Size(39, 17);
-            this.ListText.TabIndex = 1;
-            this.ListText.Text = "fdsfd";
-            // 
             // InputText
             // 
-            this.InputText.Location = new System.Drawing.Point(78, 135);
+            this.InputText.Location = new System.Drawing.Point(34, 16);
             this.InputText.Name = "InputText";
             this.InputText.Size = new System.Drawing.Size(114, 22);
             this.InputText.TabIndex = 2;
+            // 
+            // DisplayText
+            // 
+            this.DisplayText.Location = new System.Drawing.Point(223, 16);
+            this.DisplayText.Multiline = true;
+            this.DisplayText.Name = "DisplayText";
+            this.DisplayText.ReadOnly = true;
+            this.DisplayText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.DisplayText.Size = new System.Drawing.Size(192, 259);
+            this.DisplayText.TabIndex = 3;
             // 
             // ListControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.DisplayText);
             this.Controls.Add(this.InputText);
-            this.Controls.Add(this.ListText);
             this.Controls.Add(this.AddBtn);
             this.Name = "ListControl";
-            this.Size = new System.Drawing.Size(256, 314);
+            this.Size = new System.Drawing.Size(450, 300);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -75,7 +76,7 @@
         #endregion
 
         private System.Windows.Forms.Button AddBtn;
-        private System.Windows.Forms.Label ListText;
         private System.Windows.Forms.TextBox InputText;
+        private System.Windows.Forms.TextBox DisplayText;
     }
 }

@@ -47,7 +47,7 @@ namespace ControlLibrary.ViewModel
 
         public string DisplayEntries {
             get {
-                return string.Join("\n",_wordList);
+                return string.Join("\r\n",_wordList);
             }
         }
 
@@ -57,7 +57,7 @@ namespace ControlLibrary.ViewModel
         public ListViewModel()
         {
             var model = new ListModel();
-            model.PropertyChanged += ModelPropertyChanged;
+            model.PropertyChanged += ModelPropertyChanged; //effectively functions as a subscriber to events changing
             WordList = model.List;
         }
 

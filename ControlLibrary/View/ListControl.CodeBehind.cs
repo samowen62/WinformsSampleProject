@@ -25,7 +25,7 @@ namespace ControlLibrary.View
             InputText.DataBindings.Add(new Binding("Text", _viewModel, "NewWordText", 
                 false, DataSourceUpdateMode.OnPropertyChanged));//this last part will keep it bound on enter press
 
-            ListText.DataBindings.Add(new Binding("Text", _viewModel, "DisplayEntries",
+            DisplayText.DataBindings.Add(new Binding("Text", _viewModel, "DisplayEntries",
                 false, DataSourceUpdateMode.OnPropertyChanged));
         }
 
